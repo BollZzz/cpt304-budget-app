@@ -1,0 +1,16 @@
+{
+  "name": "cpt304-budget-app",
+  "version": "1.0.0",
+  "description": "Personal Budget App coursework project",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/verify-static-site.js",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.9",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.9"
+  }
+}

@@ -14,6 +14,7 @@
 body {
   background-color: #222;
   font-family: "Gilroy";
+  margin: 0;
 }
 
 * {
@@ -52,6 +53,10 @@ input[type="number"] {
 .budget-container .app-title {
   margin-top: 20px;
   margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .budget-container .app-title a {
@@ -59,6 +64,27 @@ input[type="number"] {
 }
 .budget-container .app-title a b {
   font-family: "Gilroy Bold";
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid #ffcc33;
+  outline-offset: 3px;
+}
+
+.language-toggle {
+  color: #1a0034;
+  background-color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Gilroy Bold";
+  padding: 6px 10px;
 }
 
 .budget-header {
@@ -151,6 +177,9 @@ input[type="number"] {
   color: #1a0034;
   font-family: "Gilroy Bold";
   opacity: 0.4;
+  background: transparent;
+  border: 0;
+  padding: 4px 0;
 }
 
 .toggle .second-tab,
@@ -172,6 +201,30 @@ input[type="number"] {
   -moz-user-select: auto;
   -ms-user-select: auto;
   user-select: auto;
+}
+
+.budget-dashboard label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.status-message {
+  min-height: 20px;
+  margin: 10px 20px 0;
+  color: #1a0034;
+  font-size: 0.95em;
+}
+
+.validation-error {
+  display: block;
+  color: #b00020;
+  margin-left: 12px;
+  margin-top: 4px;
+  font-size: 0.85em;
 }
 
 /* ////////// ALL ///////////// */
@@ -215,14 +268,7 @@ input[type="number"] {
 }
 
 .budget-dashboard #all ul.list li #delete {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  cursor: pointer;
-  background-image: url("icon/trash.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
+  visibility: visible;
 }
 
 .budget-dashboard #all ul.list li.income {
@@ -275,10 +321,18 @@ input[type="number"] {
   border: none;
 }
 
-.budget-dashboard #expense .input .add-expense img {
+.budget-dashboard #expense .input .add-expense,
+.budget-dashboard #income .input .add-income {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.budget-dashboard #expense .input .add-expense img,
+.budget-dashboard #income .input .add-income img {
   width: 40px;
   height: 40px;
-  cursor: pointer;
 }
 
 .budget-dashboard #expense ul {
@@ -312,26 +366,28 @@ input[type="number"] {
   color: #f0624d;
 }
 
-.budget-dashboard #expense ul.list li #edit {
+.budget-dashboard .entry-action {
   position: absolute;
   width: 20px;
   height: 20px;
-  right: 50px;
+  border: 0;
+  padding: 0;
   cursor: pointer;
-  background-image: url("icon/edit.png");
+  overflow: hidden;
+  text-indent: -999px;
+  background-color: transparent;
   background-size: 20px 20px;
   background-repeat: no-repeat;
 }
 
-.budget-dashboard #expense ul.list li #delete {
-  position: absolute;
-  width: 20px;
-  height: 20px;
+.budget-dashboard .edit-entry {
+  right: 50px;
+  background-image: url("icon/edit.png");
+}
+
+.budget-dashboard .delete-entry {
   right: 20px;
-  cursor: pointer;
   background-image: url("icon/trash.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
 }
 
 /* /////// INCOME //////// */
@@ -414,24 +470,90 @@ input[type="number"] {
   font-family: "Gilroy Bold";
 }
 
-.budget-dashboard #income ul.list li #edit {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 50px;
-  cursor: pointer;
-  background-image: url("icon/edit.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
+.budget-dashboard #all ul.list li .edit-entry {
+  display: none;
 }
 
-.budget-dashboard #income ul.list li #delete {
-  position: absolute;
-  width: 20px;
-  height: 20px;
+.privacy-link {
+  display: inline-block;
+  margin: 12px 20px 24px;
+  color: #1a0034;
+  font-family: "Gilroy Bold";
+  text-decoration: underline;
+}
+
+.cookie-banner {
+  position: fixed;
   right: 20px;
+  bottom: 20px;
+  width: min(320px, calc(100vw - 40px));
+  background: #fff;
+  color: #1a0034;
+  border: 2px solid #1a0034;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  z-index: 10;
+}
+
+.cookie-banner p {
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-actions button {
+  border: 0;
+  border-radius: 6px;
   cursor: pointer;
-  background-image: url("icon/trash.png");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
+  padding: 8px 12px;
+  font-family: "Gilroy Bold";
+}
+
+.cookie-accept {
+  background-color: #1a0034;
+  color: #fff;
+}
+
+.cookie-reject {
+  background-color: #eee;
+  color: #1a0034;
+}
+
+.privacy-page {
+  min-height: 100vh;
+  background-color: #fff;
+  color: #1a0034;
+  padding: 40px 20px;
+}
+
+.privacy-content {
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.privacy-content a {
+  color: #1a0034;
+  font-family: "Gilroy Bold";
+  text-decoration: underline;
+}
+
+@media (max-width: 420px) {
+  .budget-container,
+  .budget-dashboard,
+  .budget-dashboard #all,
+  .budget-dashboard #all ul,
+  .budget-dashboard #expense,
+  .budget-dashboard #expense .input,
+  .budget-dashboard #expense ul,
+  .budget-dashboard #income,
+  .budget-dashboard #income .input,
+  .budget-dashboard #income ul {
+    width: 100vw;
+  }
 }

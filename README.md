@@ -1,48 +1,66 @@
-# Budget-App-JavaScript
+# Budget App
 
-Welcome to the Budget App! This project is the result of following a comprehensive YouTube tutorial that guides you through building a budget management application from scratch. With this app, you can efficiently track your income, expenses, and overall budget, gaining better control of your financial situation.
+Budget App is a CPT304 coursework project for tracking personal income, expenses and balance in the browser.
 
 ## Demo
-You can check out the live demo of the Budget App here.
-**Online Demo of Project :**
 
-<a href="https://smircodes.github.io/Budget-app/" title="Budget-App">Link to Budget App</a>
+Live deployment: https://cpt304-budget-app.vercel.app/
 
 ## Features
 
-- Income and Expense Tracking: The Budget App allows you to enter your sources of income and expenses, categorizing them for better organization.
-
-- Budget Calculation: Based on the provided income and expenses, the app calculates your budget by subtracting expenses from income, giving you a clear overview of your financial status.
-
-- Monthly Reports: Get a comprehensive monthly report that summarizes your income, expenses, and the resulting budget. This helps you understand your spending patterns over time.
-
-- Simple and Intuitive Interface: The app boasts a user-friendly interface, making it easy for anyone to navigate and use, even if you have little to no prior experience with budgeting applications.
+- Add income and expense entries.
+- Calculate income, expense and balance totals.
+- Store budget entries in browser localStorage.
+- Switch the main interface between English and Chinese.
+- Manage cookie consent with a local banner.
+- Read the dedicated Privacy Policy page.
+- Use keyboard-accessible controls and labelled form fields.
 
 ## Usage
+
 1. Clone the repository or download the ZIP file.
-
 1. Open the project in your preferred code editor.
+1. Open `index.html` in your browser to run the app locally.
+1. Add income and expenses to track your budget.
 
-1. Launch the index.html file in your browser to run the Budget App locally.
+## Development
 
-1. Start by adding your income and expenses to track your budget. The app will automatically calculate your available budget.
+Install dependencies:
 
-1. Monitor your budget regularly and adjust your spending to achieve your financial goals.
+```bash
+npm install
+```
+
+Run tests:
+
+```bash
+npm test
+```
+
+Run coverage:
+
+```bash
+npm run test:coverage
+```
+
+Run the static build check:
+
+```bash
+npm run build
+```
 
 ## Technologies Used
-The Budget App was built using the following technologies and tools:
 
 - HTML5
 - CSS3
 - JavaScript
+- Vitest
+- jsdom
 
-## Credits
-The Budget App tutorial was created by [aaramiss](https://samiraatech.github.io/Budget-app/).
+## Coursework Evidence
+
+See `COURSEWORK_EVIDENCE.md` for the four identified deficiencies, fixes, before/after snippets and recommended screenshots.
 
 ## License
-The Budget App is released under the MIT License. You are free to use, modify, and distribute this project for personal and commercial purposes.
 
-## Feedback and Support
-If you have any questions, suggestions, or issues with the Budget App, feel free to reach out by creating an issue in the [GitHub repository]([url](https://github.com/aaramiss/Budget-app/issues)). We welcome any feedback to improve the app and make it even more useful for managing personal finances.
-
-Happy budgeting!
+The Budget App is released under the MIT License.

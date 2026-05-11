@@ -4,79 +4,109 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Budget Web App | javascript</title>
+    <title>Budget App</title>
     <link href="./style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div class="budget-container">
+    <main class="budget-container" aria-labelledby="app-name">
       <div class="app-title">
-        <a href="">Budget<b>App</b></a>
+        <a href="./index.html" id="app-name">Budget<b>App</b></a>
+        <button class="language-toggle" type="button" aria-label="Switch language">
+          中文
+        </button>
       </div>
       <div class="budget-header">
         <div class="balance">
-          <div class="title">Balance</div>
-          <div class="value"><small>$</small>0</div>
+          <div class="title" data-i18n="balance">Balance</div>
+          <div class="value" aria-live="polite"><small>$</small>0</div>
         </div>
         <div class="account">
           <div class="income">
-            <div class="title">Income</div>
+            <div class="title" data-i18n="income">Income</div>
             <div class="income-total"><small>$</small>0</div>
           </div>
-          <div class="chart"></div>
+          <div class="chart" role="img" aria-label="Income and expense chart"></div>
           <div class="outcome">
-            <div class="title">Outcome</div>
+            <div class="title" data-i18n="expense">Expense</div>
             <div class="outcome-total"><small>$</small>0</div>
           </div>
         </div>
       </div>
       <div class="budget-dashboard">
-        <div class="dash-title">Dashboard</div>
-        <div class="toggle">
-          <div class="first-tab">Expenses</div>
-          <div class="second-tab">Income</div>
-          <div class="third-tab focus">All</div>
+        <div class="dash-title" data-i18n="dashboard">Dashboard</div>
+        <div class="toggle" role="tablist" aria-label="Budget entry filters">
+          <button id="expense-tab" class="first-tab" type="button" role="tab" aria-controls="expense" aria-selected="false" data-i18n="expenses">Expenses</button>
+          <button id="income-tab" class="second-tab" type="button" role="tab" aria-controls="income" aria-selected="false" data-i18n="income">Income</button>
+          <button id="all-tab" class="third-tab focus" type="button" role="tab" aria-controls="all" aria-selected="true" data-i18n="all">All</button>
         </div>
-        <div class="hide" id="expense">
-          <ul class="list"></ul>
+        <p class="status-message" role="status" aria-live="polite"></p>
+        <section class="hide" id="expense" role="tabpanel" aria-labelledby="expense-tab">
+          <ul class="list" aria-label="Expense entries"></ul>
           <div class="input">
+            <label for="expense-title-input" data-i18n="expenseTitle">Expense title</label>
             <input
               type="text"
               id="expense-title-input"
               name="title"
-              placeholder="title"
+              maxlength="60"
+              autocomplete="off"
+              placeholder="Title"
             />
+            <label for="expense-amount-input" data-i18n="expenseAmount">Expense amount</label>
             <input
               type="number"
               id="expense-amount-input"
               name="amount"
+              min="0.01"
+              step="0.01"
               placeholder="$0"
             />
-            <div class="add-expense"><img src="icon/plus.png" alt="+" /></div>
+            <button class="add-expense" type="button" aria-label="Add expense">
+              <img src="icon/plus.png" alt="" />
+            </button>
           </div>
-        </div>
-        <div class="hide" id="income">
-          <ul class="list"></ul>
+        </section>
+        <section class="hide" id="income" role="tabpanel" aria-labelledby="income-tab">
+          <ul class="list" aria-label="Income entries"></ul>
           <div class="input">
+            <label for="income-title-input" data-i18n="incomeTitle">Income title</label>
             <input
               type="text"
               id="income-title-input"
               name="title"
-              placeholder="title"
+              maxlength="60"
+              autocomplete="off"
+              placeholder="Title"
             />
+            <label for="income-amount-input" data-i18n="incomeAmount">Income amount</label>
             <input
               type="number"
               id="income-amount-input"
               name="amount"
+              min="0.01"
+              step="0.01"
               placeholder="$0"
             />
-            <div class="add-income"><img src="icon/plus.png" alt="+" /></div>
+            <button class="add-income" type="button" aria-label="Add income">
+              <img src="icon/plus.png" alt="" />
+            </button>
           </div>
-        </div>
-        <div id="all">
-          <ul class="list"></ul>
-        </div>
+        </section>
+        <section id="all" role="tabpanel" aria-labelledby="all-tab">
+          <ul class="list" aria-label="All budget entries"></ul>
+        </section>
+        <a class="privacy-link" href="./privacy.html" data-i18n="privacyPolicy">Privacy Policy</a>
       </div>
-    </div>
+    </main>
+    <aside class="cookie-banner hide" aria-label="Cookie consent">
+      <p data-i18n="cookieText">
+        This app stores your language, cookie choice and budget entries in this browser.
+      </p>
+      <div class="cookie-actions">
+        <button class="cookie-accept" type="button" data-i18n="acceptCookies">Accept</button>
+        <button class="cookie-reject" type="button" data-i18n="rejectCookies">Reject</button>
+      </div>
+    </aside>
     <script src="./chart.js"></script>
     <script src="./budget.js"></script>
   </body>
