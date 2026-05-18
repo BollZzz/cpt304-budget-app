@@ -40,3 +40,6 @@ function updateChart(income, outcome) {
   drawCircle("#FFF", -ratio, true);
   drawCircle("#F0624D", 1 - ratio, false);
 }
+
+// Keep the classic-script browser API available when the file is loaded as a module in tests.
+globalThis.updateChart = updateChart;
